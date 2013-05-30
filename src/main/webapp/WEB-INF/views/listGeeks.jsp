@@ -10,8 +10,8 @@
 <body>
 <h1>spectacles</h1>
 <ul>
-	<c:forEach var="spectacle" items="${spectacles}">
-		<li><c:out value="${spectacle.titre}"/></li>
+	<c:forEach var="geek" items="${geeks}">
+		<li><c:out value="${geek.firstname}"/> <c:out value="${geek.name}"/></li>
 	</c:forEach>
 </ul>
 </body>

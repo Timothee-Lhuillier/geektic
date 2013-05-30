@@ -3,12 +3,14 @@ package com.bugsprod.geektic;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+@Entity
 public class Interest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -18,7 +20,7 @@ public class Interest implements Serializable {
 	private long id;
 	private String interest;
 	
-	@ManyToMany(mappedBy = "interest")
+	@ManyToMany(mappedBy = "insterests")
 	private Set<Geek> geeks;
 
 	public Interest() {
