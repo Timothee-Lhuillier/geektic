@@ -1,6 +1,6 @@
 drop table geek if exists cascade;
 drop sequence geek_seq if exists;
-drop table GEEK_INTERESTS if exists cascade;
+drop table GEEK_INTEREST if exists cascade;
 drop table interest if exists cascade;
 drop sequence interest_seq if exists;
 
@@ -8,6 +8,7 @@ create table geek (
 	id numeric not null,
 	name varchar(255) not null,
 	firstname varchar(255) not null,
+	gender boolean not null,
 	mail varchar(255) not null,
 	city varchar(255) not null,
 	primary key(id)

@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GeekController {
 	
 	@Autowired
-	private GeekService service;
+	private GeekService gServ;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String list(ModelMap model){
-		//List<Geek> list = service.getGeeks();
-		//model.addAttribute("geeks", list);
+		List<Geek> list = gServ.getAllGeeks();
+		model.addAttribute("geeks", list);
 		return "listGeeks";
 	}
 

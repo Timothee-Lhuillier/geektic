@@ -8,7 +8,7 @@
 <title>spectacles</title>
 </head>
 <body>
-<h1>spectacles</h1>
+<h1>geeks</h1>
 <ul>
 	<c:forEach var="geek" items="${geeks}">
 		<li><c:out value="${geek.firstname}"/> <c:out value="${geek.name}"/></li>
