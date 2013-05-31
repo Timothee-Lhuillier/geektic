@@ -50,7 +50,7 @@ public class Geek implements Serializable {
 		this.name = name;
 	}
 
-	public String getPrenom() {
+	public String getFirstname() {
 		return firstname;
 	}
 
