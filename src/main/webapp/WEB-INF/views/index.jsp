@@ -9,9 +9,7 @@
 <link href="<c:url value='style.css'></c:url>" rel="stylesheet"></link>
 </head>
 <body>
-<nav>
-	<a href="<c:url value='/'></c:url>">recherche</a> |  <a href="<c:url value='geeks'></c:url>">résultat</a>
-</nav>
+<%@ include file="navbar.jsp" %>
 
 <h1>recherche : </h1>
 <form method="get">
