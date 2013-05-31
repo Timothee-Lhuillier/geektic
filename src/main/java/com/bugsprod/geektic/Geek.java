@@ -28,8 +28,8 @@ public class Geek implements Serializable {
 	
 	@ManyToMany
 	@JoinTable(name = "GEEK_INTEREST",
-		joinColumns = @JoinColumn(name = "ID_GEEK"),
-		inverseJoinColumns = @JoinColumn(name = "ID_INTERESTS"))
+		joinColumns = @JoinColumn(name = "ID_INTEREST"),
+		inverseJoinColumns = @JoinColumn(name = "ID_GEEK"))
 	private Set<Interest> insterests;
 
 	public Geek() {

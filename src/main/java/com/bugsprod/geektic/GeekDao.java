@@ -28,17 +28,18 @@ public class GeekDao {
 		return entityManager.find(Geek.class, id);
 	}
 	
-	public List<Geek> find(boolean gender, List<Interest> interests, String cities){
-		String query="select g from geek g, interest where g.gender = :gender and :stringInterests in g.interests";
+	public List<Geek> find(boolean gender, String interests, String cities){
+		String query="select g from Geek g join g.insterests i where g.gender = :gender and :interests = i.interest";
 		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
-		q.setParameter("artiste", gender);
+		q.setParameter("gender", gender);
+		q.setParameter("interests", interests);
 		return q.getResultList();
 	}
 	
 	public List<Geek> findByGender(boolean gender){
 		String query="select g from Geek g where g.gender = :gender";
 		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
-		q.setParameter("artiste", gender);
+		q.setParameter("gender", gender);
 		return q.getResultList();
 	}
 	

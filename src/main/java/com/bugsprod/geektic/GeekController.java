@@ -1,5 +1,6 @@
 package com.bugsprod.geektic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class GeekController {
 	@RequestMapping(value="/geeks", method=RequestMethod.GET)
 	public String list(ModelMap model){
 		List<Geek> list = gServ.getAllGeeks();
+		model.addAttribute("geeks", list);
+		return "listGeeks";
+	}
+	
+	@RequestMapping(value="/geeksTest", method=RequestMethod.GET)
+	public String listTest(ModelMap model){
+		List<Geek> list = gServ.searchGeeks(true, "java", null);
+		//List<Geek> list = gServ.searchGeeksByGender(true);
 		model.addAttribute("geeks", list);
 		return "listGeeks";
 	}
