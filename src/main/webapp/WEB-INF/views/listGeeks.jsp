@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"></meta>
-<title>spectacles</title>
+<title>geeks</title>
 </head>
 <body>
 <h1>geeks</h1>

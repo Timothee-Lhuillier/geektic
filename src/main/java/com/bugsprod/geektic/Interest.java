@@ -27,11 +27,26 @@ public class Interest implements Serializable {
 		super();
 	}
 
+	public Interest(long id, String interest) {
+		super();
+		this.id = id;
+		this.interest = interest;
+	}
+
 	public String getInterest() {
 		return interest;
 	}
 
 	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 }

@@ -18,6 +18,7 @@ create sequence geek_seq start with 0;
 
 create table interest (
 	id numeric not null,
+	interest varchar(20) not null,
 	primary key(id)
 );
 

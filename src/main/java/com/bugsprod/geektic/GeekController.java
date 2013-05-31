@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/geeks")
 public class GeekController {
 	
 	@Autowired
 	private GeekService gServ;
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String index(ModelMap model){
+		return "index";
+	}
+	
+	@RequestMapping(value="/geeks", method=RequestMethod.GET)
 	public String list(ModelMap model){
 		List<Geek> list = gServ.getAllGeeks();
 		model.addAttribute("geeks", list);

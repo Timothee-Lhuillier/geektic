@@ -27,5 +27,9 @@ public class GeekService {
 	public Geek getGeek(Long id){
 		return gDao.findById(id);
 	}
+	
+	public List<Geek> searchGeek(boolean gender, List<Interest> interests, String cities) {
+		return gDao.find(gender, interests, cities);
+	}
 
 }
