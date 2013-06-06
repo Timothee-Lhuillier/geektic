@@ -12,19 +12,19 @@
 <%@ include file="navbar.jsp" %>
 
 <h1>recherche : </h1>
-<form method="get">
-	<label for="genre">je cherche : </label>
-	<select name="sexe">
-		<option value="f" label="une geekette">une geekette</option>
-		<option value="h" label="un geek">un geek</option>
+<form action="searchGeeks" method="get">
+	<label for="gender">je cherche : </label>
+	<select name="gender" id="gender">
+		<option value="false" label="une geekette">une geekette</option>
+		<option value="true" label="un geek">un geek</option>
 	</select><br /><br />
 	
 	<label for="centerOfInterest">Centre d'intéret(s) : </label>
-	<input list="interest" type="text" placeholder="tag1, tag2, tag3" id="centerOfInterest" autocomplete="off" ></input>
+	<input list="interest" type="text" placeholder="tag1, tag2, tag3" id="centerOfInterest" name="centerOfInterest" autocomplete="off" ></input>
 	<datalist id="interest"></datalist><br /><br />
 	
 	<label for="city">ville(s) : </label>
-	<input list="cities" type="text" placeholder="Lyon" id="city" autocomplete="off" ></input>
+	<input list="cities" type="text" placeholder="Lyon" id="city" name="city" autocomplete="off" ></input>
 	<datalist id="cities"></datalist><br /><br />
 	
 	<button type="submit">chercher</button>
