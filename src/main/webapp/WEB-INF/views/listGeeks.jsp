@@ -14,7 +14,11 @@
 <h1>geeks</h1>
 <ul>
 	<c:forEach var="geek" items="${geeks}">
-		<li><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/></li>
+		<li><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>
+		<c:forEach var="inter" items="${geek.getInsterests()}">
+			 <c:out value="${inter}"/> <c:if test="geek.getInsterests().contains()">oui</c:if>
+		</c:forEach>
+		</li>
 	</c:forEach>
 </ul>
 </body>

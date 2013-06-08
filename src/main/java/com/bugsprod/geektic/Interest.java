@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Interest implements Serializable {
+public class Interest implements Serializable, Comparable<Interest> {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -48,5 +48,34 @@ public class Interest implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toString() {
+		return this.interest;
+	}
 	
+	@Override
+	public int compareTo(Interest arg0) {
+		return this.interest.compareTo(arg0.toString());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass() && obj.getClass()!="".getClass()) {
+            return false;
+        }
+        if (obj.getClass() == this.getClass()){
+        	return this.interest.equals(((Interest)obj).interest);
+        } else {
+        	return this.interest.equals((String)obj);
+        }
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.interest.hashCode();
+	}
 }

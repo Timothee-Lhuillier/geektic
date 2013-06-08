@@ -29,7 +29,7 @@ public class GeekService {
 	}
 	
 	public List<Geek> searchGeeks(boolean gender, String interests, String cities) {
-		return gDao.find(gender, interests, cities);
+		return gDao.find(gender, interests.split(", "), cities);
 	}
 	
 	public List<Geek> searchGeeksByGender(boolean gender) {
