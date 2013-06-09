@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -24,13 +25,16 @@ public class Geek implements Serializable {
 	private String firstname;
 	private boolean gender;
 	private String mail;
-	private String city;
 	
 	@ManyToMany
 	@JoinTable(name = "GEEK_INTEREST",
 		joinColumns = @JoinColumn(name = "ID_GEEK"),
 		inverseJoinColumns = @JoinColumn(name = "ID_INTEREST"))
-	private Set<Interest> insterests;
+	private Set<Interest> interests;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID", referencedColumnName = "id")
+	private City city;
 
 	public Geek() {
 		super();
@@ -58,12 +62,12 @@ public class Geek implements Serializable {
 		this.firstname = firstname;
 	}
 
-	public Set<Interest> getInsterests() {
-		return insterests;
+	public Set<Interest> getInterests() {
+		return interests;
 	}
 
-	public void setInsterests(Set<Interest> insterests) {
-		this.insterests = insterests;
+	public void setInterests(Set<Interest> insterests) {
+		this.interests = insterests;
 	}
 
 	public boolean getGender() {
@@ -82,11 +86,11 @@ public class Geek implements Serializable {
 		this.mail = mail;
 	}
 
-	public String getCity() {
+	public City getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(City city) {
 		this.city = city;
 	}
 	

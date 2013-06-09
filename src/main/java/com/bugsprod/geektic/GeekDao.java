@@ -1,6 +1,5 @@
 package com.bugsprod.geektic;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,30 +29,45 @@ public class GeekDao {
 		return entityManager.find(Geek.class, id);
 	}
 
-	public List<Geek> find(boolean gender, String[] interests, String cities) {
-		String query = "select g from Geek g join g.insterests i where " +
-				"g.gender = :gender and " +
-				":interest = i.interest";
+	public List<Geek> find(boolean gender, String[] interests, String[] cities) {
+		String query = "select g from Geek g where " +
+				"g.gender = :gender";
+		for (int i = 0; i < (interests.length); i++) {
+			query += " and :interest"+String.valueOf(i)+" in (select i.interest from g.interests i)";
+		}
+		if (cities.length>0 && cities[0]!="") {
+			query += " and g.city.city in (";
+			for (int i = 0; i < (cities.length); i++) {
+				if (i>0){
+					query += ", ";
+				}
+				query += ":city"+String.valueOf(i);
+			}
+			query += ")";
+		}
 		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
 		q.setParameter("gender", gender);
-		q.setParameter("interest", interests[0]);
-		List<Geek> findedGeeks = q.getResultList();
-		List<Geek> geeks = new ArrayList<>();
-		for (Geek geek : findedGeeks) {
-			if (geek.getInsterests().containsAll(Arrays.asList(interests))) {
-				geeks.add(geek);
-			}
-			for (Interest inter : geek.getInsterests()) {
-				System.out.println(inter.equals("java"));
+		for (int i = 0; i < interests.length; i++) {
+			q.setParameter("interest"+String.valueOf(i), interests[i]);
+		}
+		if (cities.length>0 && cities[0]!="") {
+			for (int i = 0; i < cities.length; i++) {
+				q.setParameter("city"+String.valueOf(i), cities[i]);
 			}
 		}
-		return findedGeeks;
+		return q.getResultList();
 	}
 
 	public List<Geek> findByGender(boolean gender) {
 		String query = "select g from Geek g where g.gender = :gender";
 		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
 		q.setParameter("gender", gender);
+		return q.getResultList();
+	}
+	
+	public List<City> findAllCities() {
+		String query = "select c from City c";
+		TypedQuery<City> q = entityManager.createQuery(query, City.class);
 		return q.getResultList();
 	}
 

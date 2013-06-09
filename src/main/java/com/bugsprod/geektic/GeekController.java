@@ -37,7 +37,7 @@ public class GeekController {
 			HttpServletRequest request,
 			ModelMap model, HttpServletResponse response) throws IOException {
 		List<Geek> list = gServ.searchGeeks(Boolean.valueOf(request.getParameter("gender")),
-				request.getParameter("centerOfInterest"), null);
+				request.getParameter("centerOfInterest"), request.getParameter("cities"));
 		model.addAttribute("geeks", list);
 		return "listGeeks";
 	}

@@ -13,14 +13,14 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Interest implements Serializable, Comparable<Interest> {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@SequenceGenerator(name="interest_generator", sequenceName="interest_seq", allocationSize=1)
+	@SequenceGenerator(name = "interest_generator", sequenceName = "interest_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "interest_generator")
 	private long id;
 	private String interest;
-	
-	@ManyToMany(mappedBy = "insterests")
+
+	@ManyToMany(mappedBy = "interests")
 	private Set<Geek> geeks;
 
 	public Interest() {
@@ -53,27 +53,26 @@ public class Interest implements Serializable, Comparable<Interest> {
 	public String toString() {
 		return this.interest;
 	}
-	
+
 	@Override
 	public int compareTo(Interest arg0) {
-		return this.interest.compareTo(arg0.toString());
+		return this.interest.compareTo(arg0.interest);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) {
-            return true;
-        }
-        if (obj == null || obj.getClass() != this.getClass() && obj.getClass()!="".getClass()) {
-            return false;
-        }
-        if (obj.getClass() == this.getClass()){
-        	return this.interest.equals(((Interest)obj).interest);
-        } else {
-        	return this.interest.equals((String)obj);
-        }
+			return true;
+		} else if (obj == null || obj.getClass() != this.getClass()
+				&& obj.getClass() != "".getClass()) {
+			return false;
+		} else if (obj.getClass() == this.getClass()) {
+			return this.interest.equals(((Interest) obj).interest);
+		} else {
+			return this.interest.equals((String) obj);
+		}
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return this.interest.hashCode();

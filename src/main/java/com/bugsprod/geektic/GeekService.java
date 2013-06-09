@@ -29,7 +29,9 @@ public class GeekService {
 	}
 	
 	public List<Geek> searchGeeks(boolean gender, String interests, String cities) {
-		return gDao.find(gender, interests.split(", "), cities);
+		interests = interests==null ? "" : interests;
+		cities = cities==null ? "" : cities;
+		return gDao.find(gender, interests.split(", "), cities.split(", "));
 	}
 	
 	public List<Geek> searchGeeksByGender(boolean gender) {

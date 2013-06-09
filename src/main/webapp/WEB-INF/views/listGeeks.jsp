@@ -15,7 +15,7 @@
 <ul>
 	<c:forEach var="geek" items="${geeks}">
 		<li><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>
-		<c:forEach var="inter" items="${geek.getInsterests()}">
+		<c:forEach var="inter" items="${geek.getInterests()}">
 			 <c:out value="${inter}"/> <c:if test="geek.getInsterests().contains()">oui</c:if>
 		</c:forEach>
 		</li>

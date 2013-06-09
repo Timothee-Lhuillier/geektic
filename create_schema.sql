@@ -1,8 +1,20 @@
+drop table city if exists cascade;
+drop sequence city_seq if exists;
 drop table geek if exists cascade;
 drop sequence geek_seq if exists;
 drop table GEEK_INTEREST if exists cascade;
 drop table interest if exists cascade;
 drop sequence interest_seq if exists;
+
+
+
+create table city (
+	id numeric not null,
+	city varchar(20) not null,
+	primary key(id)
+);
+
+create sequence city_seq start with 0;
 
 create table geek (
 	id numeric not null,
@@ -10,7 +22,8 @@ create table geek (
 	firstname varchar(255) not null,
 	gender boolean not null,
 	mail varchar(255) not null,
-	city varchar(255) not null,
+	id_city numeric not null,
+	FOREIGN KEY(id_city) REFERENCES public.city (id),
 	primary key(id)
 );
 
