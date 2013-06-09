@@ -41,6 +41,15 @@ public class GeekController {
 		model.addAttribute("geeks", list);
 		return "listGeeks";
 	}
+	
+	@RequestMapping(value = "/detailsGeek", method = RequestMethod.GET)
+	public String details(
+			HttpServletRequest request,
+			ModelMap model, HttpServletResponse response) throws IOException {
+		Geek geek = gServ.getGeek(Long.valueOf(request.getParameter("id")));
+		model.addAttribute("geek", geek);
+		return "detailsGeek";
+	}
 
 	@RequestMapping(value = "/geeksTest", method = RequestMethod.GET)
 	public String listTest(ModelMap model) {

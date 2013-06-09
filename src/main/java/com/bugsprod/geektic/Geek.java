@@ -2,6 +2,7 @@ package com.bugsprod.geektic;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Geek implements Serializable {
 	@JoinTable(name = "GEEK_INTEREST",
 		joinColumns = @JoinColumn(name = "ID_GEEK"),
 		inverseJoinColumns = @JoinColumn(name = "ID_INTEREST"))
-	private Set<Interest> interests;
+	private List<Interest> interests;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID", referencedColumnName = "id")
@@ -44,6 +45,10 @@ public class Geek implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.firstname = firstname;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -62,11 +67,11 @@ public class Geek implements Serializable {
 		this.firstname = firstname;
 	}
 
-	public Set<Interest> getInterests() {
+	public List<Interest> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(Set<Interest> insterests) {
+	public void setInterests(List<Interest> insterests) {
 		this.interests = insterests;
 	}
 

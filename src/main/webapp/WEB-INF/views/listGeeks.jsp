@@ -14,11 +14,11 @@
 <h1>geeks</h1>
 <ul>
 	<c:forEach var="geek" items="${geeks}">
-		<li><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>
+		<li><a href="detailsGeek?id=${geek.getId()}"><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>
 		<c:forEach var="inter" items="${geek.getInterests()}">
-			 <c:out value="${inter}"/> <c:if test="geek.getInsterests().contains()">oui</c:if>
+			 <c:out value="${inter}"/>
 		</c:forEach>
-		</li>
+		</a></li>
 	</c:forEach>
 </ul>
 </body>
