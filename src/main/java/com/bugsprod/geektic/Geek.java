@@ -1,7 +1,7 @@
 package com.bugsprod.geektic;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +26,7 @@ public class Geek implements Serializable {
 	private String firstname;
 	private boolean gender;
 	private String mail;
+	private Date dateOfBirth;
 	
 	@ManyToMany
 	@JoinTable(name = "GEEK_INTEREST",
@@ -34,7 +35,7 @@ public class Geek implements Serializable {
 	private List<Interest> interests;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID", referencedColumnName = "id")
+	@JoinColumn(name = "ID_CITY", referencedColumnName = "id")
 	private City city;
 
 	public Geek() {
@@ -78,6 +79,14 @@ public class Geek implements Serializable {
 	public boolean getGender() {
 		return gender;
 	}
+	
+	public String getGenderString() {
+		if (gender){
+			return "geek";
+		} else {
+			return "geekette";
+		}
+	}
 
 	public void setGender(boolean gender) {
 		this.gender = gender;
@@ -97,6 +106,19 @@ public class Geek implements Serializable {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+	
+	public String getFrDateOfBirth() {
+		String[] date = dateOfBirth.toString().split("-");
+		return date[2]+"/"+date[1]+"/"+date[0];
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	
 }

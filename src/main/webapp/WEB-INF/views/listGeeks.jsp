@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ include file="functions.jsp" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,13 +12,20 @@
 <body>
 <%@ include file="navbar.jsp" %>
 
-<h1>geeks</h1>
+<h1>
+	<%=request.getAttribute("gender")!=null?request.getAttribute("gender").toString().equals("true")?"geeks":"geekettes":"geek(ette)s" %>
+</h1>
 <ul>
 	<c:forEach var="geek" items="${geeks}">
-		<li><a href="detailsGeek?id=${geek.getId()}"><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>
-		<c:forEach var="inter" items="${geek.getInterests()}">
-			 <c:out value="${inter}"/>
-		</c:forEach>
+		<li>
+		<%
+			Geek geek = (Geek) (pageContext.getAttribute("geek"));
+			String cities = (String) request.getAttribute("cities");
+		%>
+		<%=request.getAttribute("gender")==null?geek.getGenderString()+" : ":"" %>
+		<a href="detailsGeek?id=${geek.getId()}"><c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/>,
+		ville = ${geek.getCity()},
+		<%=printInterest(geek)%>
 		</a></li>
 	</c:forEach>
 </ul>

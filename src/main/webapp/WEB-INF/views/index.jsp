@@ -19,36 +19,30 @@
 		<option value="true" label="un geek">un geek</option>
 	</select><br /><br />
 	
-	<label for="centerOfInterest">Centre d'intéret(s) : </label>
+	<label for="centerOfInterest">centre d'intéret(s) : </label>
 	<input list="listInterests" type="text" placeholder="tag1, tag2, tag3" id="centerOfInterest" name="centerOfInterest" autocomplete="off" ></input>
-	<datalist id="listInterests"></datalist><br /><br />
+	<datalist id="listInterests"></datalist>
+	<button type="button" onclick="javascript:document.getElementById('centerOfInterest').value=''" class="del">X</button><br /><br />
 	
-	<label for="cities">ville(s) ou chercher</label>
-	<input list="listCities" type="text" placeholder="Lyon" id="cities" name="cities" autocomplete="off" ></input>
-	<datalist id="listCities"></datalist><br /><br />
+	<label for="cities">ville(s) ou chercher : </label>
+	<input list="listCities" type="text" placeholder="tag1, tag2, tag3" id="cities" name="cities" autocomplete="off" ></input>
+	<datalist id="listCities"></datalist>
+	<button type="button" onclick="javascript:document.getElementById('cities').value=''" class="del">X</button><br /><br />
 	
 	<button type="submit">chercher</button>
 </form>
 
 <script
    type='text/javascript'
-   src='autoComplete.js'>
+   src='<c:url value="autoComplete.js"></c:url>'>
 </script>
 <script type="text/javascript">
 
 // globals
-/*var rawTags = ["python", "java", "C++", "C", "C#", "TDD", "JUnit", "PHP", "html", "html5", "css", "css3"];
-var inputField = document.getElementById('centerOfInterest');
-var initInputFieldValue = inputField.value;
-var dataList = document.getElementById('interest');
-var initNbVirgules = (initInputFieldValue.match(/,/g)||[]).length;
-
-fillDatalist("");
-mainLoop();*/
-var interests = ["python", "java", "C++", "C", "C#", "TDD", "JUnit", "PHP", "html", "html5", "css", "css3"];
+var interests = ${interests};
 var inputCenterOfInterest = new FillDatalist(interests, 'centerOfInterest', 'listInterests');
 
-var cities = ["Lyon", "Grenoble", "Strasbourg", "Toulouse", "Paris"];
+var cities = ${cities};
 var inputCities = new FillDatalist(cities, 'cities', 'listCities');
 
 </script>

@@ -1,6 +1,5 @@
 package com.bugsprod.geektic;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,70 +7,81 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class GeekDao {
 
 	@PersistenceContext
-	private EntityManager entityManager;
+	private EntityManager em;
 
 	public GeekDao() {
 		super();
 	}
 
-	public List<Geek> findAll() {
-		String query = "select g from Geek g";
-		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
+	public GeekDao(EntityManager em) {
+		super();
+		this.em = em;
+	}
+
+	public List<Geek> findAllGeeks() {
+		String query = "select g from Geek g order by g.city";
+		TypedQuery<Geek> q = em.createQuery(query, Geek.class);
 		return q.getResultList();
 	}
 
-	public Geek findById(Long id) {
-		return entityManager.find(Geek.class, id);
+	public Geek findGeekById(Long id) {
+		return em.find(Geek.class, id);
 	}
 
-	public List<Geek> find(boolean gender, String[] interests, String[] cities) {
-		String query = "select g from Geek g where " +
-				"g.gender = :gender";
-		for (int i = 0; i < (interests.length); i++) {
-			query += " and :interest"+String.valueOf(i)+" in (select i.interest from g.interests i)";
+	public List<Geek> findGeeks(boolean gender, String[] interests, String[] cities) {
+		String query = "select g from Geek g where " + "g.gender = :gender";
+		if (interests != null) {
+			for (int i = 0; i < (interests.length); i++) {
+				query += " and :interest" + String.valueOf(i)
+						+ " in (select i.interest from g.interests i)";
+			}
 		}
-		if (cities.length>0 && cities[0]!="") {
+		if (cities != null) {
 			query += " and g.city.city in (";
 			for (int i = 0; i < (cities.length); i++) {
-				if (i>0){
+				if (i > 0) {
 					query += ", ";
 				}
-				query += ":city"+String.valueOf(i);
+				query += ":city" + String.valueOf(i);
 			}
 			query += ")";
 		}
-		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
+		TypedQuery<Geek> q = em.createQuery(query, Geek.class);
 		q.setParameter("gender", gender);
-		for (int i = 0; i < interests.length; i++) {
-			q.setParameter("interest"+String.valueOf(i), interests[i]);
+		if (interests != null) {
+			for (int i = 0; i < interests.length; i++) {
+				q.setParameter("interest" + String.valueOf(i), interests[i]);
+			}
 		}
-		if (cities.length>0 && cities[0]!="") {
+		if (cities != null) {
 			for (int i = 0; i < cities.length; i++) {
-				q.setParameter("city"+String.valueOf(i), cities[i]);
+				q.setParameter("city" + String.valueOf(i), cities[i]);
 			}
 		}
 		return q.getResultList();
 	}
 
-	public List<Geek> findByGender(boolean gender) {
-		String query = "select g from Geek g where g.gender = :gender";
-		TypedQuery<Geek> q = entityManager.createQuery(query, Geek.class);
-		q.setParameter("gender", gender);
-		return q.getResultList();
-	}
-	
 	public List<City> findAllCities() {
 		String query = "select c from City c";
-		TypedQuery<City> q = entityManager.createQuery(query, City.class);
+		TypedQuery<City> q = em.createQuery(query, City.class);
 		return q.getResultList();
 	}
 
-	public void persist(Geek newGeek) {
-		entityManager.persist(newGeek);
+	public List<Interest> findAllInterests() {
+		String query = "select i from Interest i";
+		TypedQuery<Interest> q = em.createQuery(query, Interest.class);
+		return q.getResultList();
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void updateGeek(Geek geek) {
+		em.merge(geek);
 	}
 }

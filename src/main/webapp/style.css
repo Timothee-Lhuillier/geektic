@@ -12,37 +12,14 @@ nav {
 		linear,
 		left top, left bottom,
 		from(#aaeeff),
-		to(#3399cc),
-		color-stop(0.8, #77CCDD)
+		to(rgba(51,153,204,0.2)),
+		color-stop(0.70, #77CCD3),
+		color-stop(0.75, rgba(119,204,211,0.8))
 	);
-	background: -webkit-linear-gradient(
-		top,
-		#aaeeff,
-		#77CCD3 70%,
-		rgba(119,204,211,0.8) 75%,
-		rgba(51,153,204,0.2)
-	);
-	background: -moz-linear-gradient(
-		top,
-		#aaeeff,
-		#77CCD3 70%,
-		rgba(119,204,211,0.8) 75%,
-		rgba(51,153,204,0.2)
-	);
-	background: -o-linear-gradient(
-		top,
-		#aaeeff,
-		#77CCD3 70%,
-		rgba(119,204,211,0.8) 75%,
-		rgba(51,153,204,0.2)
-	);
-	background: linear-gradient(
-		top,
-		#aaeeff,
-		#77CCD3 70%,
-		rgba(119,204,211,0.8) 75%,
-		rgba(51,153,204,0.2)
-	);
+	background: -webkit-linear-gradient( top, #aaeeff, #77CCD3 70%, rgba(119,204,211,0.8) 75%, rgba(51,153,204,0.2) );
+	background: -moz-linear-gradient( top, #aaeeff, #77CCD3 70%, rgba(119,204,211,0.8) 75%, rgba(51,153,204,0.2) );
+	background: -o-linear-gradient( top, #aaeeff, #77CCD3 70%, rgba(119,204,211,0.8) 75%, rgba(51,153,204,0.2) );
+	background: linear-gradient( top, #aaeeff, #77CCD3 70%, rgba(119,204,211,0.8) 75%, rgba(51,153,204,0.2) );
 	padding: 5px;
 	padding-bottom: 15px;
 	margin: 0px -5px 0px -5px;
@@ -95,4 +72,39 @@ div.term {
 div.line {
 	color: white;
 	display: inline;
+}
+
+.del {
+    width: 20px;
+    height:20px;
+    vertical-align:middle;
+	-moz-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f29c93;
+	box-shadow:inset 0px 1px 0px 0px #f29c93;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fe1a00), color-stop(1, #ce0100) );
+	background:-webkit-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+	background:-moz-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+	background:-o-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+	background:-linear-gradient( center top, #fe1a00 5%, #ce0100 100% );
+	background-color:#fe1a00;
+	border-radius:15px;
+	border:1px solid #d83526;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:11px;
+	font-weight:bold;
+	text-align : center;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #b23e35;
+}.del:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ce0100), color-stop(1, #fe1a00) );
+	background:-webkit-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+	background:-moz-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+	background:-o-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+	background:-linear-gradient( center top, #ce0100 5%, #fe1a00 100% );
+	background-color:#ce0100;
+}.del:active {
+	position:relative;
+	top:1px;
 }

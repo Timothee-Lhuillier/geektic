@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Interest implements Serializable, Comparable<Interest> {
+public class Interest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -52,11 +52,6 @@ public class Interest implements Serializable, Comparable<Interest> {
 	@Override
 	public String toString() {
 		return this.interest;
-	}
-
-	@Override
-	public int compareTo(Interest arg0) {
-		return this.interest.compareTo(arg0.interest);
 	}
 
 	@Override

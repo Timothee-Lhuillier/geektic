@@ -1,13 +1,12 @@
 package com.bugsprod.geektic;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.asm.commons.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +21,16 @@ public class GeekController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(ModelMap model) {
+		List<String> inters = new ArrayList<String>();
+		for (Interest inter : gServ.getAllInterest()) {
+			inters.add("\"" + inter.toString() + "\"");
+		}
+		model.addAttribute("interests", inters);
+		List<String> cities = new ArrayList<String>();
+		for (City city : gServ.getAllCities()) {
+			cities.add("\"" + city.toString() + "\"");
+		}
+		model.addAttribute("cities", cities);
 		return "index";
 	}
 
@@ -33,30 +42,26 @@ public class GeekController {
 	}
 
 	@RequestMapping(value = "/searchGeeks", method = RequestMethod.GET)
-	public String list(
-			HttpServletRequest request,
-			ModelMap model, HttpServletResponse response) throws IOException {
-		List<Geek> list = gServ.searchGeeks(Boolean.valueOf(request.getParameter("gender")),
-				request.getParameter("centerOfInterest"), request.getParameter("cities"));
+	public String list(HttpServletRequest request, ModelMap model,
+			HttpServletResponse response) throws IOException {
+		List<Geek> list = gServ.findGeeks(request.getParameter("gender"),
+				request.getParameter("centerOfInterest"),
+				request.getParameter("cities"));
+		if (request.getParameter("gender") == null) {
+			model.addAttribute("gender", "false");
+		}
 		model.addAttribute("geeks", list);
+		model.addAttribute("gender", request.getParameter("gender"));
 		return "listGeeks";
-	}
-	
-	@RequestMapping(value = "/detailsGeek", method = RequestMethod.GET)
-	public String details(
-			HttpServletRequest request,
-			ModelMap model, HttpServletResponse response) throws IOException {
-		Geek geek = gServ.getGeek(Long.valueOf(request.getParameter("id")));
-		model.addAttribute("geek", geek);
-		return "detailsGeek";
 	}
 
-	@RequestMapping(value = "/geeksTest", method = RequestMethod.GET)
-	public String listTest(ModelMap model) {
-		List<Geek> list = gServ.searchGeeks(true, "java", null);
-		// List<Geek> list = gServ.searchGeeksByGender(true);
-		model.addAttribute("geeks", list);
-		return "listGeeks";
+	@RequestMapping(value = "/detailsGeek", method = RequestMethod.GET)
+	public String details(HttpServletRequest request, ModelMap model,
+			HttpServletResponse response) throws IOException {
+		Geek geek = gServ
+				.findGeekById(Long.valueOf(request.getParameter("id")));
+		model.addAttribute("geek", geek);
+		return "detailsGeek";
 	}
 
 }

@@ -5,6 +5,7 @@
 <%@page import="java.util.List" %>
 <%@page import="com.bugsprod.geektic.Geek" %>
 <%@page import="com.bugsprod.geektic.Interest" %>
+<%@ include file="functions.jsp" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,44 +15,18 @@
 </head>
 <body>
 <%@ include file="navbar.jsp" %>
-<%!
-public String writeTermLine(Geek geek, String line) {
-	String termLine=geek.getFirstname()+"@"+geek.getName()+":~$ <div class=\"line\">";
-	termLine+=line;
-	termLine+="</div>";
-	return termLine;
-}
-public String printInterest(Geek geek) {
-	String interests="intérets=";
-	List<Interest> lInterests = geek.getInterests();
-	int nbInterest = geek.getInterests().size();
-	for (int i=0; i<nbInterest; i++) {
-		interests += geek.getInterests().get(i);
-			if (i<nbInterest-1){
-				interests += ":";
-			}
-	}
-	return interests;
-}
-%>
-
 <h1>détails de <c:out value="${geek.getFirstname()}"/> <c:out value="${geek.getName()}"/> :</h1>
 <div class=term>
 	<%
 		Geek geek = (Geek) (request.getAttribute("geek"));
-		String gender;
-		if (geek.getGender()){
-			gender = "geek";
-		} else {
-			gender = "geekette";
-		}
 	%>
-	<%= writeTermLine(geek, "infos\n<br />sexe="+gender+"\n<br />") %>
-	<div class="line">
-		<%=printInterest(geek)%>
-<%-- 		<c:forEach var="inter" items="${geek.getInterests()}"> --%>
-<%-- 			 <c:out value="${inter}"/>: --%>
-<%-- 		</c:forEach> --%>
+	${geek.getFirstname()}@${geek.getName()}:~$<div class="line">infos<br />
+		sexe = ${geek.getGenderString()}<br />
+		date de naissance = ${geek.getFrDateOfBirth()}<br />
+		e-mail = ${geek.getMail()}<br />
+		ville = ${geek.getCity()}<br />	
+		<%=printInterest(geek)%><br />
+		nb visualisation = ${geek.getNbViews()}
 	</div>
 </div>
 </body>

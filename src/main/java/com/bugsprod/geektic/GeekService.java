@@ -10,32 +10,40 @@ public class GeekService {
 
 	@Autowired
 	private GeekDao gDao;
-	
+
 	public GeekService() {
 		super();
 	}
-	
+
 	public GeekService(GeekDao gDao) {
 		super();
 		this.gDao = gDao;
 	}
-	
-	public List<Geek> getAllGeeks(){
-		return gDao.findAll();
+
+	public List<Geek> getAllGeeks() {
+		return gDao.findAllGeeks();
 	}
-	
-	public Geek getGeek(Long id){
-		return gDao.findById(id);
+
+	public Geek findGeekById(Long id) {
+		Geek geek = gDao.findGeekById(id);
+		gDao.updateGeek(geek);
+		return geek;
 	}
-	
-	public List<Geek> searchGeeks(boolean gender, String interests, String cities) {
-		interests = interests==null ? "" : interests;
-		cities = cities==null ? "" : cities;
-		return gDao.find(gender, interests.split(", "), cities.split(", "));
+
+	public List<Geek> findGeeks(String gender, String interests, String cities) {
+		return gDao.findGeeks(Boolean.valueOf(gender),
+						interests == null || interests.equals("") ? null
+								: interests.split(", "),
+						cities == null || cities.equals("") ? null : cities
+								.split(", "));
 	}
-	
-	public List<Geek> searchGeeksByGender(boolean gender) {
-		return gDao.findByGender(gender);
+
+	public List<City> getAllCities() {
+		return gDao.findAllCities();
+	}
+
+	public List<Interest> getAllInterest() {
+		return gDao.findAllInterests();
 	}
 
 }
