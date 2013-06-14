@@ -25,9 +25,7 @@ public class GeekService {
 	}
 
 	public Geek findGeekById(Long id) {
-		Geek geek = gDao.findGeekById(id);
-		gDao.updateGeek(geek);
-		return geek;
+		return gDao.findGeekById(id);
 	}
 
 	public List<Geek> findGeeks(String gender, String interests, String cities) {
