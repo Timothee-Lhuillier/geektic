@@ -30,4 +30,21 @@ public class View implements Serializable {
 		Date currentTime = new Date();
 		this.timestampView = new Timestamp(currentTime.getTime());
 	}
+
+	public Timestamp getTimestampView() {
+		return timestampView;
+	}
+
+	public void setTimestampView(Timestamp timestampView) {
+		this.timestampView = timestampView;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
 }

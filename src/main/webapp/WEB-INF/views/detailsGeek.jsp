@@ -26,6 +26,7 @@
 		e-mail = ${geek.getMail()}<br />
 		ville = ${geek.getCity()}<br />	
 		<%=printInterest(geek)%><br />
+		nb visualisation = ${ geek.getViews().size() }<br />
 	</div>
 </div>
 </body>

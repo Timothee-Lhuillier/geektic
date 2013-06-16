@@ -41,7 +41,7 @@ public class Geek implements Serializable {
 	private City city;
 	
 	@OneToMany(mappedBy = "geek")
-	private Set<View> views;
+	private List<View> views;
 
 	public Geek() {
 		super();
@@ -126,4 +126,7 @@ public class Geek implements Serializable {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
+	public List<View> getViews() {
+		return views;
+	}
 }
