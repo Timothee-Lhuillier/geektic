@@ -24,16 +24,17 @@ public class GeekService {
 		return gDao.findAllGeeks();
 	}
 
-	public Geek findGeekById(Long id) {
-		return gDao.findGeekById(id);
+	public Geek findGeekById(Long id, String ip) {
+		Geek geek = gDao.findGeekById(id);
+		gDao.addView(new View(geek, ip));
+		return geek;
 	}
 
 	public List<Geek> findGeeks(String gender, String interests, String cities) {
-		return gDao.findGeeks(Boolean.valueOf(gender),
-						interests == null || interests.equals("") ? null
-								: interests.split(", "),
-						cities == null || cities.equals("") ? null : cities
-								.split(", "));
+		return gDao.findGeeks(
+						Boolean.valueOf(gender),
+						interests == null || interests.equals("") ? null : interests.split(", "),
+						cities == null || cities.equals("") ? null : cities.split(", "));
 	}
 
 	public List<City> getAllCities() {

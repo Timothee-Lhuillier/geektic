@@ -1,5 +1,6 @@
 drop table city if exists cascade;
 drop sequence city_seq if exists;
+drop table VIEW if exists cascade;
 drop table geek if exists cascade;
 drop sequence geek_seq if exists;
 drop table GEEK_INTEREST if exists cascade;
@@ -44,7 +45,7 @@ create table GEEK_INTEREST (
 	primary key(id_geek, id_interest)
 );
 
-create table GEEK_VIEWS (
+create table VIEW (
 	id_geek numeric not null,
 	timestampView timestamp not null,
 	ip varchar(37) not null,

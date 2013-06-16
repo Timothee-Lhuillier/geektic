@@ -58,8 +58,9 @@ public class GeekController {
 	@RequestMapping(value = "/detailsGeek", method = RequestMethod.GET)
 	public String details(HttpServletRequest request, ModelMap model,
 			HttpServletResponse response) throws IOException {
-		Geek geek = gServ
-				.findGeekById(Long.valueOf(request.getParameter("id")));
+		Geek geek = gServ.findGeekById(
+				Long.valueOf(request.getParameter("id")),
+				request.getRemoteAddr());
 		model.addAttribute("geek", geek);
 		return "detailsGeek";
 	}

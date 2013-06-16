@@ -79,4 +79,9 @@ public class GeekDao {
 		TypedQuery<Interest> q = em.createQuery(query, Interest.class);
 		return q.getResultList();
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public void addView(View view) {
+		em.persist(view);
+	}
 }
