@@ -32,6 +32,7 @@ public class GeekDaoTest {
 	String[] cities;
 	List<Geek> geeks;
 	
+	TypedQuery<Geek> mockedQ;
 	EntityManager mockedEM;
 	GeekDao mockedGD;
 	
@@ -47,6 +48,7 @@ public class GeekDaoTest {
 		
 		geeks = new ArrayList<Geek>();
 		
+		mockedQ = mock(TypedQuery.class);
 		mockedEM = mock(EntityManager.class);
 		mockedGD = mock(GeekDao.class);
 		
@@ -59,18 +61,23 @@ public class GeekDaoTest {
 		cities = new String[1];
 		inters[0] = "java";
 		cities[0] = "lyon";
+		
+		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
+		when(mockedQ.getSingleResult()).thenReturn(kevin);
+		
 		assertEquals(0l, gDaoM.findLuckyGeek(true, inters, cities).getId());
 	}
 	
 	@Test
-	public void luckyFindGeek1Test() {
+	public void luckyFindGeek2Test() {
 		inters = new String[1];
 		cities = new String[1];
 		inters[0] = "cpp";
 		cities[0] = "lyon";
-		TypedQuery<Geek> q = mock(TypedQuery.class);
-		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(q);
-		when(q.getSingleResult()).thenReturn(paul);
+		
+		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
+		when(mockedQ.getSingleResult()).thenReturn(paul);
+		
 		assertEquals(2l, gDaoM.findLuckyGeek(true, inters, cities).getId());
 	}
 }

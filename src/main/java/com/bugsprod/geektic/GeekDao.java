@@ -85,8 +85,9 @@ public class GeekDao {
 		return q.getResultList();
 	}
 
-	public Geek findLuckyGeek(boolean b, String[] interests, String[] cities) {
-		return new Geek(0l , "Dupond", "Kevin");
+	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
+		TypedQuery<Geek> q = queryFindGeek(gender, interests, cities);
+		return q.getSingleResult();
 	}
 
 	public List<City> findAllCities() {
