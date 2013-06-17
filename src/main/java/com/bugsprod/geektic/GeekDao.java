@@ -35,14 +35,19 @@ public class GeekDao {
 		return em.find(Geek.class, id);
 	}
 
-	public List<Geek> findGeeks(boolean gender, String[] interests, String[] cities) {
-		String query = "select g from Geek g where " + "g.gender = :gender";
+	public String interestsToQuery(String[] interests) {
+		String query = "";
 		if (interests != null) {
 			for (int i = 0; i < (interests.length); i++) {
 				query += " and :interest" + String.valueOf(i)
 						+ " in (select i.interest from g.interests i)";
 			}
 		}
+		return query;
+	}
+	
+	public String citiesToQuery(String[] cities) {
+		String query = "";
 		if (cities != null) {
 			query += " and g.city.city in (";
 			for (int i = 0; i < (cities.length); i++) {
@@ -53,19 +58,35 @@ public class GeekDao {
 			}
 			query += ")";
 		}
+		return query;
+	}
+	
+	public void setParams(TypedQuery<Geek> q, String nameParams, String[] params) {
+		if (params != null) {
+			for (int i = 0; i < params.length; i++) {
+				q.setParameter(nameParams + String.valueOf(i), params[i]);
+			}
+		}
+	}
+	
+	public TypedQuery<Geek> queryFindGeek(boolean gender, String[] interests, String[] cities) {
+		String query = "select g from Geek g where " + "g.gender = :gender";
+		query += interestsToQuery(interests);
+		query += citiesToQuery(cities);
 		TypedQuery<Geek> q = em.createQuery(query, Geek.class);
 		q.setParameter("gender", gender);
-		if (interests != null) {
-			for (int i = 0; i < interests.length; i++) {
-				q.setParameter("interest" + String.valueOf(i), interests[i]);
-			}
-		}
-		if (cities != null) {
-			for (int i = 0; i < cities.length; i++) {
-				q.setParameter("city" + String.valueOf(i), cities[i]);
-			}
-		}
+		setParams(q, "interest", interests);
+		setParams(q, "city", cities);
+		return q;
+	}
+	
+	public List<Geek> findGeeks(boolean gender, String[] interests, String[] cities) {
+		TypedQuery<Geek> q = queryFindGeek(gender, interests, cities);
 		return q.getResultList();
+	}
+
+	public Geek findLuckyGeek(boolean b, String[] interests, String[] cities) {
+		return new Geek(0l , "Dupond", "Kevin");
 	}
 
 	public List<City> findAllCities() {
