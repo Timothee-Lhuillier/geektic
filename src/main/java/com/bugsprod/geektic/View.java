@@ -2,6 +2,7 @@ package com.bugsprod.geektic;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -28,6 +29,10 @@ public class View implements Serializable {
 	
 	public View(Geek geek, String ip) {
 		this.geek = geek;
+		if (geek.getViews()==null) {
+			geek.setViews(new ArrayList<View>());
+		}
+		geek.getViews().add(this);
 		this.ip = ip;
 		Date currentTime = new Date();
 		this.timestampView = new Timestamp(currentTime.getTime());

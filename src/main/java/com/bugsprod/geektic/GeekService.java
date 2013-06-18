@@ -69,8 +69,7 @@ public class GeekService {
 				resultGeek = geek;
 			}
 		}
-		View view = new View(resultGeek, ip);
-		gDao.addView(view);
+		gDao.addView(new View(resultGeek, ip));
 		return resultGeek;
 	}
 
