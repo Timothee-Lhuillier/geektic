@@ -1,16 +1,11 @@
 package tdd;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,9 +15,11 @@ import com.bugsprod.geektic.Geek;
 import com.bugsprod.geektic.GeekDao;
 import com.bugsprod.geektic.GeekService;
 import com.bugsprod.geektic.Interest;
+import com.bugsprod.geektic.View;
 
 public class GeekServiceTest {
 
+	String ip;
 	Geek kevin;
 	Geek julie;
 	Geek paul;
@@ -30,8 +27,9 @@ public class GeekServiceTest {
 	Interest cpp;
 	City lyon;
 	
-	String[] inters;
-	String[] cities;
+	String gender;
+	String inters;
+	String cities;
 	List<Geek> geeks;
 	
 	GeekDao mockedGD;
@@ -40,12 +38,18 @@ public class GeekServiceTest {
 	
 	@Before
 	public void setUp() {
+		ip = "127.0.0.1";
 		kevin = new Geek(0l, "Dupond", "Kevin");
+		kevin.setViews(new ArrayList<View>());
 		julie = new Geek(1l, "Ker", "Julie" );
+		julie.setViews(new ArrayList<View>());
 		paul = new Geek(2l, "Dupond", "Paul");
+		paul.setViews(new ArrayList<View>());
 		java = new Interest(0, "java");
 		cpp = new Interest(0, "C++");
 		lyon = new City(0,"Lyon");
+		
+		gender = "true";
 		
 		geeks = new ArrayList<Geek>();
 		
@@ -55,32 +59,42 @@ public class GeekServiceTest {
 	}
 
 	@Test
-	public void luckyFindGeekJavaLyonOneGeekTest() {
-		inters = new String[1];
-		cities = new String[1];
-		inters[0] = "java";
-		cities[0] = "Lyon";
+	public void luckyFindGeek_OneGeek_Test() {
+		inters = "java";
+		cities = "Lyon";
 
 		geeks.add(paul);
 		geeks.add(kevin);
 		
-		when(mockedGD.findGeeks(true, inters, cities)).thenReturn(geeks);
+		when(mockedGD.findGeeks(true, inters.split(", "), cities.split(", "))).thenReturn(geeks);
 		
-		assertEquals(Geek.class, gServM.findLuckyGeek(true, inters, cities).getClass());
+		assertEquals(Geek.class, gServM.findLuckyGeek(gender, inters, cities, ip).getClass());
 	}
 	
 	@Test
-	public void luckyFindGeekCppLyonPaulTest() {
-		inters = new String[1];
-		cities = new String[1];
-		inters[0] = "C++";
-		cities[0] = "Lyon";
+	public void luckyFindGeek_Paul_Test() {
+		inters = "C++";
+		cities = "Lyon";
 		
 		geeks.add(paul);
 		
-		when(mockedGD.findGeeks(true, inters, cities)).thenReturn(geeks);
+		when(mockedGD.findGeeks(true, inters.split(", "), cities.split(", "))).thenReturn(geeks);
 		
-		assertEquals(2l, gServM.findLuckyGeek(true, inters, cities).getId());
+		assertEquals(2l, gServM.findLuckyGeek(gender, inters, cities, ip).getId());
+	}
+	
+	@Test
+	public void luckyFindGeek_TwoLucky_Test() {
+		inters = "java";
+		cities = "Lyon";
+		
+		geeks.add(kevin);
+		geeks.add(paul);
+		
+		when(mockedGD.findGeeks(true, inters.split(", "), cities.split(", "))).thenReturn(geeks);
+		
+		gServM.findLuckyGeek(gender, inters, cities, ip).getId();
+		assertEquals(2l, gServM.findLuckyGeek(gender, inters, cities, ip).getId());
 	}
 	
 }
