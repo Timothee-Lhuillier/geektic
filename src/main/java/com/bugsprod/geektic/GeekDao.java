@@ -73,6 +73,7 @@ public class GeekDao {
 		String query = "select g from Geek g where " + "g.gender = :gender";
 		query += interestsToQuery(interests);
 		query += citiesToQuery(cities);
+		query += " order by (select count(*) from View v where v.geek=g)*1 desc";
 		TypedQuery<Geek> q = em.createQuery(query, Geek.class);
 		q.setParameter("gender", gender);
 		setParams(q, "interest", interests);
