@@ -45,4 +45,8 @@ public class GeekService {
 		return gDao.findAllInterests();
 	}
 
+	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
+		return gDao.findGeeks(gender, interests, cities).get(0);
+	}
+
 }

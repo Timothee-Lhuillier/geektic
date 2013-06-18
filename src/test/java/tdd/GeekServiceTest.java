@@ -18,11 +18,13 @@ import org.junit.Test;
 import com.bugsprod.geektic.City;
 import com.bugsprod.geektic.Geek;
 import com.bugsprod.geektic.GeekDao;
+import com.bugsprod.geektic.GeekService;
 import com.bugsprod.geektic.Interest;
 
-public class GeekDaoTest {
+public class GeekServiceTest {
 
 	Geek kevin;
+	Geek julie;
 	Geek paul;
 	Interest java;
 	Interest cpp;
@@ -32,15 +34,14 @@ public class GeekDaoTest {
 	String[] cities;
 	List<Geek> geeks;
 	
-	TypedQuery<Geek> mockedQ;
-	EntityManager mockedEM;
 	GeekDao mockedGD;
 	
-	GeekDao gDaoM;
+	GeekService gServM;
 	
 	@Before
 	public void setUp() {
 		kevin = new Geek(0l, "Dupond", "Kevin");
+		julie = new Geek(1l, "Ker", "Julie" );
 		paul = new Geek(2l, "Dupond", "Paul");
 		java = new Interest(0, "java");
 		cpp = new Interest(0, "C++");
@@ -48,50 +49,38 @@ public class GeekDaoTest {
 		
 		geeks = new ArrayList<Geek>();
 		
-		mockedQ = mock(TypedQuery.class);
-		mockedEM = mock(EntityManager.class);
 		mockedGD = mock(GeekDao.class);
 		
-		gDaoM = new GeekDao(mockedEM);
+		gServM = new GeekService(mockedGD);
 	}
 
 	@Test
-	public void luckyFindGeekJavaLyon0Test() {
+	public void luckyFindGeekJavaLyonOneGeekTest() {
 		inters = new String[1];
 		cities = new String[1];
 		inters[0] = "java";
-		cities[0] = "lyon";
+		cities[0] = "Lyon";
+
+		geeks.add(paul);
+		geeks.add(kevin);
 		
-		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
-		when(mockedQ.getSingleResult()).thenReturn(kevin);
+		when(mockedGD.findGeeks(true, inters, cities)).thenReturn(geeks);
 		
-		assertEquals(0l, gDaoM.findLuckyGeek(true, inters, cities).getId());
+		assertEquals(Geek.class, gServM.findLuckyGeek(true, inters, cities).getClass());
 	}
 	
 	@Test
-	public void luckyFindGeekCppLyon2Test() {
+	public void luckyFindGeekCppLyonPaulTest() {
 		inters = new String[1];
 		cities = new String[1];
-		inters[0] = "cpp";
-		cities[0] = "lyon";
+		inters[0] = "C++";
+		cities[0] = "Lyon";
 		
-		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
-		when(mockedQ.getSingleResult()).thenReturn(paul);
+		geeks.add(paul);
 		
-		assertEquals(2l, gDaoM.findLuckyGeek(true, inters, cities).getId());
-	}
-	
-	@Test
-	public void luckyFindGeekjavaLyon2MoreViewTest() {
-		inters = new String[1];
-		cities = new String[1];
-		inters[0] = "cpp";
-		cities[0] = "lyon";
+		when(mockedGD.findGeeks(true, inters, cities)).thenReturn(geeks);
 		
-		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
-		when(mockedQ.getSingleResult()).thenReturn(paul);
-		
-		assertEquals(2l, gDaoM.findLuckyGeek(true, inters, cities).getId());
+		assertEquals(2l, gServM.findLuckyGeek(true, inters, cities).getId());
 	}
 	
 }

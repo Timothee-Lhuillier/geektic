@@ -86,11 +86,6 @@ public class GeekDao {
 		return q.getResultList();
 	}
 
-	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
-		TypedQuery<Geek> q = queryFindGeek(gender, interests, cities);
-		return q.getSingleResult();
-	}
-
 	public List<City> findAllCities() {
 		String query = "select c from City c";
 		TypedQuery<City> q = em.createQuery(query, City.class);
