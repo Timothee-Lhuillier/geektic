@@ -56,7 +56,7 @@ public class GeekDaoTest {
 	}
 
 	@Test
-	public void luckyFindGeek0Test() {
+	public void luckyFindGeekJavaLyon0Test() {
 		inters = new String[1];
 		cities = new String[1];
 		inters[0] = "java";
@@ -69,7 +69,7 @@ public class GeekDaoTest {
 	}
 	
 	@Test
-	public void luckyFindGeek2Test() {
+	public void luckyFindGeekCppLyon2Test() {
 		inters = new String[1];
 		cities = new String[1];
 		inters[0] = "cpp";
@@ -80,4 +80,18 @@ public class GeekDaoTest {
 		
 		assertEquals(2l, gDaoM.findLuckyGeek(true, inters, cities).getId());
 	}
+	
+	@Test
+	public void luckyFindGeekjavaLyon2MoreViewTest() {
+		inters = new String[1];
+		cities = new String[1];
+		inters[0] = "cpp";
+		cities[0] = "lyon";
+		
+		when(mockedEM.createQuery(anyString(), eq(Geek.class))).thenReturn(mockedQ);
+		when(mockedQ.getSingleResult()).thenReturn(paul);
+		
+		assertEquals(2l, gDaoM.findLuckyGeek(true, inters, cities).getId());
+	}
+	
 }
