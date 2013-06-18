@@ -87,7 +87,12 @@ public class GeekServiceTest {
 	public void luckyFindGeek_TwoLucky_Test() {
 		inters = "java";
 		cities = "Lyon";
-		
+
+		kevin.getViews().add(new View(kevin, ip));
+	    try{
+	    	Thread.sleep(100);
+	    }catch(InterruptedException e){}
+		paul.getViews().add(new View(paul, ip));
 		geeks.add(kevin);
 		geeks.add(paul);
 		
