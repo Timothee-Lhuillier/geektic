@@ -37,16 +37,16 @@ public class GeekService {
 						cities == null || cities.equals("") ? null : cities.split(", "));
 	}
 
+	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
+		return gDao.findGeeks(gender, interests, cities).get(0);
+	}
+
 	public List<City> getAllCities() {
 		return gDao.findAllCities();
 	}
 
 	public List<Interest> getAllInterest() {
 		return gDao.findAllInterests();
-	}
-
-	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
-		return gDao.findGeeks(gender, interests, cities).get(0);
 	}
 
 }
