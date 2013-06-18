@@ -46,7 +46,7 @@ form {
 	box-shadow: 0px 0px 10px rgba(204,204,206,0.5);
 }
 
-form button {
+form div.buttons {
 	margin: auto;
 	display:table;
 }

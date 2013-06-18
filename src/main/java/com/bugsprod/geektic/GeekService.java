@@ -1,5 +1,7 @@
 package com.bugsprod.geektic;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +34,44 @@ public class GeekService {
 
 	public List<Geek> findGeeks(String gender, String interests, String cities) {
 		return gDao.findGeeks(
-						Boolean.valueOf(gender),
-						interests == null || interests.equals("") ? null : interests.split(", "),
-						cities == null || cities.equals("") ? null : cities.split(", "));
+				Boolean.valueOf(gender),
+				split(interests),
+				split(cities));
 	}
 
-	public Geek findLuckyGeek(boolean gender, String[] interests, String[] cities) {
-		return gDao.findGeeks(gender, interests, cities).get(0);
+	public Timestamp maxTimestamp(Geek geek) {
+		Timestamp maxTimestamp = new Timestamp(0);
+		for (View view : geek.getViews()) {
+			if (view.getTimestampView().compareTo(maxTimestamp)>0) {
+				maxTimestamp = view.getTimestampView();
+			}
+		}
+		System.out.println(maxTimestamp.toString());
+		return maxTimestamp;
+	}
+	
+	public String[] split(String string) {
+		return string == null || string.equals("") ? null : string.split(", ");
+	}
+	
+	public Geek findLuckyGeek(String gender, String interests, String cities, String ip) {
+		List<Geek> findedGeeks = gDao.findGeeks(
+				Boolean.valueOf(gender),
+				split(interests),
+				split(cities));
+		Geek resultGeek = findedGeeks.get(0);
+		Timestamp minMaxTimestamp = new Timestamp((new Date()).getTime());
+		Timestamp tmpMaxTimestamp;
+		for (Geek geek : findedGeeks) {
+			tmpMaxTimestamp = maxTimestamp(geek);
+			if (tmpMaxTimestamp.compareTo(minMaxTimestamp)<0) {
+				minMaxTimestamp = tmpMaxTimestamp;
+				resultGeek = geek;
+			}
+		}
+		View view = new View(resultGeek, ip);
+		gDao.addView(view);
+		return resultGeek;
 	}
 
 	public List<City> getAllCities() {

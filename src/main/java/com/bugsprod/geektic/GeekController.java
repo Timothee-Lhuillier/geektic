@@ -44,15 +44,24 @@ public class GeekController {
 	@RequestMapping(value = "/searchGeeks", method = RequestMethod.GET)
 	public String list(HttpServletRequest request, ModelMap model,
 			HttpServletResponse response) throws IOException {
-		List<Geek> list = gServ.findGeeks(request.getParameter("gender"),
-				request.getParameter("centerOfInterest"),
-				request.getParameter("cities"));
-		if (request.getParameter("gender") == null) {
-			model.addAttribute("gender", "false");
+		if (request.getParameter("lucky")==null) {
+			List<Geek> list = gServ.findGeeks(request.getParameter("gender"),
+					request.getParameter("centerOfInterest"),
+					request.getParameter("cities"));
+			if (request.getParameter("gender") == null) {
+				model.addAttribute("gender", "false");
+			}
+			model.addAttribute("geeks", list);
+			model.addAttribute("gender", request.getParameter("gender"));
+			return "listGeeks";
+		} else {
+			Geek geek = gServ.findLuckyGeek(request.getParameter("gender"),
+					request.getParameter("centerOfInterest"),
+					request.getParameter("cities"),
+					request.getRemoteAddr());
+			model.addAttribute("geek", geek);
+			return "detailsGeek";
 		}
-		model.addAttribute("geeks", list);
-		model.addAttribute("gender", request.getParameter("gender"));
-		return "listGeeks";
 	}
 
 	@RequestMapping(value = "/detailsGeek", method = RequestMethod.GET)

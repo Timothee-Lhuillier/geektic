@@ -29,7 +29,7 @@
 	<datalist id="listCities"></datalist>
 	<button type="button" onclick="javascript:document.getElementById('cities').value=''" class="del">X</button><br /><br />
 	
-	<button type="submit">chercher</button>
+	<div class="buttons"><input type="submit" value="chercher"/><input type="submit" name="lucky" value="chanceux"/></div>
 </form>
 
 <script

@@ -128,4 +128,8 @@ public class Geek implements Serializable {
 	public List<View> getViews() {
 		return views;
 	}
+
+	public void setViews(List<View> views) {
+		this.views = views;
+	}
 }
