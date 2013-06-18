@@ -18,7 +18,9 @@ public class View implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_GEEK", referencedColumnName = "id")
 	Geek geek;
+	@Id
 	Timestamp timestampView;
+	@Id
 	String ip;
 
 	public View() {
@@ -46,5 +48,4 @@ public class View implements Serializable {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	
 }
