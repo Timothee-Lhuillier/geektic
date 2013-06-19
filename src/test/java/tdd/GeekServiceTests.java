@@ -11,12 +11,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.bugsprod.geektic.City;
-import com.bugsprod.geektic.Geek;
-import com.bugsprod.geektic.GeekDao;
 import com.bugsprod.geektic.GeekService;
-import com.bugsprod.geektic.Interest;
-import com.bugsprod.geektic.View;
+import com.bugsprod.model.City;
+import com.bugsprod.model.Geek;
+import com.bugsprod.model.GeekDao;
+import com.bugsprod.model.Interest;
+import com.bugsprod.model.View;
 
 public class GeekServiceTests {
 

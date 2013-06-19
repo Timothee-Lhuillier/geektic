@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.bugsprod.geektic.City;
+import com.bugsprod.model.City;
 
 public class CityTests {
 

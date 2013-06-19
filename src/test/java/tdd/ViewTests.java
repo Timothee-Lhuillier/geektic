@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.bugsprod.geektic.Geek;
-import com.bugsprod.geektic.View;
+import com.bugsprod.model.Geek;
+import com.bugsprod.model.View;
 
 public class ViewTests {
 	@Test

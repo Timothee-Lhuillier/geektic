@@ -7,6 +7,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bugsprod.model.City;
+import com.bugsprod.model.Geek;
+import com.bugsprod.model.GeekDao;
+import com.bugsprod.model.Interest;
+import com.bugsprod.model.View;
+
 @Service
 public class GeekService {
 

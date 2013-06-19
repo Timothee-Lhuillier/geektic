@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class Interest implements Serializable {

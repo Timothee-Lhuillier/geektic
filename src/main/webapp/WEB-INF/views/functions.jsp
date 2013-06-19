@@ -1,6 +1,6 @@
 <%@page import="java.util.List" %>
-<%@page import="com.bugsprod.geektic.Geek" %>
-<%@page import="com.bugsprod.geektic.Interest" %>
+<%@page import="com.bugsprod.model.Geek" %>
+<%@page import="com.bugsprod.model.Interest" %>
 <%!
 public String printInterest(Geek geek) {
 	String interests="intérets = ";

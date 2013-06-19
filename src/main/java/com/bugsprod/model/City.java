@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class City implements Serializable, Comparable<City> {

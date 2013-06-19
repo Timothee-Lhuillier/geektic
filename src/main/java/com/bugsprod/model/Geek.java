@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.model;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class Geek implements Serializable {

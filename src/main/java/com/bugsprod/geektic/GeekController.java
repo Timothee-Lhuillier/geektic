@@ -13,6 +13,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bugsprod.model.City;
+import com.bugsprod.model.Geek;
+import com.bugsprod.model.Interest;
+
 @Controller
 public class GeekController {
 

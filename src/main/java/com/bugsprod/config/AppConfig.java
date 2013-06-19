@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.config;
 
 import javax.sql.DataSource;
 

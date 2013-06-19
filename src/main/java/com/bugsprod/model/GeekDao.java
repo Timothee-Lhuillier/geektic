@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.model;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Repository
 public class GeekDao {

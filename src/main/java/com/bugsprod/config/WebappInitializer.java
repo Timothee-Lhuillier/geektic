@@ -1,4 +1,4 @@
-package com.bugsprod.geektic;
+package com.bugsprod.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
@@ -8,8 +8,10 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 
+
+
 /**
- * Cette classe joue le rôle du web.xml, mais en Java. Elle permet de configurer le servlet de Spring
+ * Cette classe joue le rï¿½le du web.xml, mais en Java. Elle permet de configurer le servlet de Spring
  * (DispatcherServlet)
  * @author JB
  */

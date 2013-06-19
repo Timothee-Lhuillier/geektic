@@ -6,7 +6,7 @@ import java.sql.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.bugsprod.geektic.Geek;
+import com.bugsprod.model.Geek;
 
 public class GeekTests {
 
