@@ -17,7 +17,7 @@ import com.bugsprod.model.City;
 import com.bugsprod.model.Geek;
 import com.bugsprod.model.Interest;
 
-@Controller
+@Controller("/")
 public class GeekController {
 
 	@Autowired
