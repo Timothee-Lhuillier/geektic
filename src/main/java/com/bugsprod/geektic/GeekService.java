@@ -42,11 +42,10 @@ public class GeekService {
 	public Timestamp maxTimestamp(Geek geek) {
 		Timestamp maxTimestamp = new Timestamp(0);
 		for (View view : geek.getViews()) {
-			if (view.getTimestampView().compareTo(maxTimestamp)>0) {
-				maxTimestamp = view.getTimestampView();
+			if (view.getTimestamp().compareTo(maxTimestamp)>0) {
+				maxTimestamp = view.getTimestamp();
 			}
 		}
-		System.out.println(maxTimestamp.toString());
 		return maxTimestamp;
 	}
 	

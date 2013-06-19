@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import com.bugsprod.geektic.GeekService;
 import com.bugsprod.geektic.Interest;
 import com.bugsprod.geektic.View;
 
-public class GeekServiceTest {
+public class GeekServiceTests {
 
 	String ip;
 	Geek kevin;
@@ -84,21 +85,40 @@ public class GeekServiceTest {
 	}
 	
 	@Test
+	public void maxTimestamp_maxTimestamp_Test() {
+		Timestamp timestamp1 = new Timestamp(100);
+		new View(kevin, ip, timestamp1);
+		new View(kevin, ip,new Timestamp(10));
+		assertEquals(timestamp1, kevin.getViews().get(0).getTimestamp());
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Test
+	public void split_null_Test() {
+		assertEquals(null, gServM.split(null));
+	}
+	
+	@Test
+	public void split_splited_Test() {
+		assertEquals(2, gServM.split("babar, lapinou").length);
+	}
+	
+	@Test
 	public void luckyFindGeek_TwoLucky_Test() {
 		inters = "java";
 		cities = "Lyon";
 
-		kevin.getViews().add(new View(kevin, ip));
-	    try{
-	    	Thread.sleep(100);
-	    }catch(InterruptedException e){}
-		paul.getViews().add(new View(paul, ip));
+		new View(kevin, ip, new Timestamp(10));
+		new View(paul, ip, new Timestamp(20));
 		geeks.add(kevin);
 		geeks.add(paul);
 		
 		when(mockedGD.findGeeks(true, inters.split(", "), cities.split(", "))).thenReturn(geeks);
 		
 		gServM.findLuckyGeek(gender, inters, cities, ip).getId();
+	    try{
+	    	Thread.sleep(100);
+	    }catch(InterruptedException e){}
 		assertEquals(2l, gServM.findLuckyGeek(gender, inters, cities, ip).getId());
 	}
 	

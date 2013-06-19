@@ -52,6 +52,13 @@ public class Geek implements Serializable {
 		this.firstname = firstname;
 	}
 
+	public Geek(long id, String name, String firstname, boolean gender) {
+		this.id = id;
+		this.name = name;
+		this.firstname = firstname;
+		this.gender = gender;
+	}
+
 	public long getId() {
 		return id;
 	}

@@ -28,21 +28,23 @@ public class View implements Serializable {
 	}
 	
 	public View(Geek geek, String ip) {
-		this.geek = geek;
-		if (geek.getViews()==null) {
-			geek.setViews(new ArrayList<View>());
-		}
-		geek.getViews().add(this);
+		setGeek(geek);
 		this.ip = ip;
 		Date currentTime = new Date();
 		this.timestampView = new Timestamp(currentTime.getTime());
 	}
 
-	public Timestamp getTimestampView() {
+	public View(Geek geek, String ip, Timestamp timestamp) {
+		setGeek(geek);
+		this.ip = ip;
+		this.timestampView = timestamp;
+	}
+
+	public Timestamp getTimestamp() {
 		return timestampView;
 	}
 
-	public void setTimestampView(Timestamp timestampView) {
+	public void setTimestamp(Timestamp timestampView) {
 		this.timestampView = timestampView;
 	}
 
@@ -52,5 +54,22 @@ public class View implements Serializable {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public void setGeek(Geek newGeek) {
+		if (this.geek!=null) {
+			this.geek.getViews().remove(this);
+		}
+		if (newGeek!=null) {
+			if (newGeek.getViews()==null) {
+				newGeek.setViews(new ArrayList<View>());
+			}
+			newGeek.getViews().add(this);
+		}
+		this.geek = newGeek;
+	}
+
+	public Geek getGeek() {
+		return this.geek;
 	}
 }
