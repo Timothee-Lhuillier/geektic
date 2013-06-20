@@ -20,6 +20,9 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/bugs/.gradle/caches/artifacts-23/filestore/org.springframework/spring-beans/3.2.2.RELEASE/jar/bbe3f76d14e9471e339bd8afec07b6fc5c916cd4/spring-beans-3.2.2.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-core-asl/1.6.6/jar/81382489e19ab6d40a4c91ee5ccf226335d3654f/jackson-core-asl-1.6.6.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/bugs/.gradle/caches/artifacts-23/filestore/org.hsqldb/hsqldb/2.2.9/jar/23365fb055315725a8e69777e3d2e1e8a5d4878f/hsqldb-2.2.9.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -75,6 +78,9 @@
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/bugs/.gradle/caches/artifacts-23/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/jar/dd962b49d731a69c4ca0c4ec67b71076742657cc/spring-webmvc-3.2.2.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-mapper-asl/1.6.6/jar/93e1aed8a0060eef71f4d18c248952b868fd0116/jackson-mapper-asl-1.6.6.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 	</wb-module>

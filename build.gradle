@@ -7,6 +7,8 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.6.6'
+    compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.6.6'
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
     compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
     compile 'org.springframework:spring-orm:3.2.2.RELEASE'

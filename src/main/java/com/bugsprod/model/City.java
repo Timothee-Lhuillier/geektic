@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 
 @Entity
 public class City implements Serializable, Comparable<City> {
@@ -22,6 +24,7 @@ public class City implements Serializable, Comparable<City> {
 	private String city;
 
 	@OneToMany(mappedBy = "city")
+	@JsonBackReference("city")
 	private Set<Geek> geeks;
 
 	public City() {

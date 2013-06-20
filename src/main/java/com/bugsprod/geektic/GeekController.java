@@ -26,7 +26,7 @@ public class GeekController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(ModelMap model) {
 		List<String> inters = new ArrayList<String>();
-		for (Interest inter : gServ.getAllInterest()) {
+		for (Interest inter : gServ.getAllInterests()) {
 			inters.add("\"" + inter.toString() + "\"");
 		}
 		model.addAttribute("interests", inters);

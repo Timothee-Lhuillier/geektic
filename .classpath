@@ -6,6 +6,16 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container" exported="true"/>
+	<classpathentry sourcepath="/home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-mapper-asl/1.6.6/source/424b8c73652c54cb365871c8bae07077577f17ce/jackson-mapper-asl-1.6.6-sources.jar" kind="lib" path="/home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-mapper-asl/1.6.6/jar/93e1aed8a0060eef71f4d18c248952b868fd0116/jackson-mapper-asl-1.6.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-core-asl/1.6.6/source/21d0b9699a4594bfe8c42b799eb476978f5f913f/jackson-core-asl-1.6.6-sources.jar" kind="lib" path="/home/bugs/.gradle/caches/artifacts-23/filestore/org.codehaus.jackson/jackson-core-asl/1.6.6/jar/81382489e19ab6d40a4c91ee5ccf226335d3654f/jackson-core-asl-1.6.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/home/bugs/.gradle/caches/artifacts-23/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/source/e304b61946aaef6929c1f96e0c2a01a93f6352a3/spring-webmvc-3.2.2.RELEASE-sources.jar" kind="lib" path="/home/bugs/.gradle/caches/artifacts-23/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/jar/dd962b49d731a69c4ca0c4ec67b71076742657cc/spring-webmvc-3.2.2.RELEASE.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>

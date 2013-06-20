@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 
 @Entity
 public class Interest implements Serializable {
@@ -20,8 +22,9 @@ public class Interest implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "interest_generator")
 	private long id;
 	private String interest;
-
+	
 	@ManyToMany(mappedBy = "interests")
+	@JsonBackReference("interests")
 	private Set<Geek> geeks;
 
 	public Interest() {

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+
 
 @Entity
 public class View implements Serializable {
@@ -19,6 +21,7 @@ public class View implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "ID_GEEK", referencedColumnName = "id")
+	@JsonBackReference("views")
 	Geek geek;
 	@Id
 	Timestamp timestampView;

@@ -82,7 +82,7 @@ public class GeekService {
 		return gDao.findAllCities();
 	}
 
-	public List<Interest> getAllInterest() {
+	public List<Interest> getAllInterests() {
 		return gDao.findAllInterests();
 	}
 
